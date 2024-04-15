@@ -1,0 +1,13 @@
+.editor-page {
+    display: flex;
+
+    .selector {
+        flex-grow: 1;
+        background-color: red;
+    }
+
+    .modifier {
+        flex-grow: 3;
+    }
+    
+}
