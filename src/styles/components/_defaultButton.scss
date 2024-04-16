@@ -1,0 +1,19 @@
+button {
+  
+    font-family: $default-font-stack;
+    font-size: $default-font-size;
+    font-weight: $default-font-weight;
+
+    background-color: $-c-gray-2;
+    border-radius: 999px;
+    color: $-c-gray-1;
+    padding: $gap-s $gap-xl;
+    border: $border-hidden;
+}
+
+
+button:hover {
+    border: $border-hover;
+
+}
+

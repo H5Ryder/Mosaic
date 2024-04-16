@@ -1,0 +1,33 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $-c-gray-3;
+    padding: $gap-s $gap-m;
+    border-radius: $border-radius;
+
+   
+
+
+    input {
+        width: 100%;
+        background-color: $-c-gray-2;
+        border-radius: 999px;
+        color: $-c-white;
+
+        padding: $gap-s $gap-xl;
+        border: $border-hidden;
+
+    }
+
+    input:hover {
+        border: $border-hover;
+    }
+
+    input:focus {
+        padding: ($gap-s - 1px) $gap-xl;
+        border: $border-focus;
+    }
+
+}
+

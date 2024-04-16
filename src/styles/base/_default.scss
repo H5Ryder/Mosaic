@@ -1,6 +1,43 @@
-$font-stack: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande";
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
-$primary-color: black;
-$secondary-color: #C0C0AB;
+
+//FONTS
+$default-font-stack: "Figtree", "Helvetica", "Arial", "Lucida Grande";
+$default-font-size: 16px;
+$default-font-weight: 400;
+
+//COLORS
+$-c-black: black;
+$-c-white: white;
+
+$-c-gray-1: #A7A7A7;
+$-c-gray-2: #242424;
+$-c-gray-3: #191919;
+
+$-c-accent: #35d0a7;
+
+
+//GAP-SIZE
+$gap-xs: 6px;
+$gap-s: 8px;
+$gap-m: 12px;
+$gap-l: 16px;
+$gap-xl: 20px;
+
+
+
+//BORDER
+$border-thin: 1px;
+$border-thick: 2px;
+$border-radius: 6px;
+
+$border-hidden: 2px solid $-c-gray-3;
+$border-hover: 2px solid $-c-gray-1;
+$border-focus: 2px solid $-c-white;
+$border-hover-accent: 2px solid $-c-accent;
+
+
+
+
 
 

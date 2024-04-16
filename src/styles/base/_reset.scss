@@ -2,7 +2,7 @@
     box-sizing: border-box;
   }
   
-  html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video{
+  html, body, div, span, input, object, iframe, button, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video{
     margin: 0;
     padding: 0;
     border: 0;
@@ -12,6 +12,11 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     text-size-adjust: none;
+
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
   }
   
   footer, header, nav, section, main{
@@ -41,6 +46,6 @@
   }
   
   input{
-    -webkit-appearance: none;
+    /*-webkit-appearance: none;*/
     border-radius: 0;
   }

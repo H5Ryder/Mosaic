@@ -1,16 +1,12 @@
 import React from 'react'
 
 //RETURNS AN ARRAY OF IMAGES INSIDE A CONTAINER
-export default function imageGallery({images}) {
+export default function imageGallery({images, addAlbum}) {
 
 
     function _imageArray(data) {
-      console.log("Data");
-      console.log(data);
-      console.log("Data");
-
-        return data.map((imgUrl,index) => {
-            return <img key={index} src={imgUrl} ></img>
+        return data.map((img,index) => {
+            return <img id={img.id} key={img.id} src={img.url} onClick={() => addAlbum(img)} ></img>
         })
     }
 

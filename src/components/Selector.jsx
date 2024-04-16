@@ -1,26 +1,30 @@
 import React from "react";
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import ImageGallery from "./ImageGallery";
-import {updateData, retrieveData} from '../context/EditorContext'
-
-
+import { updateData, retrieveData } from "../context/EditorContext";
 
 export default function Selector() {
   const [searchImgs, setSearchImgs] = useState(null);
 
-  const {searchAlbum} = retrieveData();
-  
-  async function submitSearch() {
-    const imgs = await searchAlbum();
+  const { searchAlbum } = retrieveData();
+  const {addAlbum} = updateData();
+
+  async function submitSearch(searchedArtist) {
+    if (searchedArtist != "") {
+    const imgs = await searchAlbum(searchedArtist);
     setSearchImgs(imgs);
+    }
+  }
+
+  function submitAlbum(album) {
+    addAlbum(album);
   }
 
   return (
-    <div className="selector">
-        <SearchBar submitSearch={submitSearch}/>
-        <ImageGallery images={searchImgs}/>
-    </div>
-
+    <>
+      <SearchBar submitSearch={submitSearch} />
+      <ImageGallery images={searchImgs} addAlbum= {submitAlbum} />
+    </>
   );
 }

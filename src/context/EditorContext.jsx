@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const DataRetrieveContext = createContext();
 export const DataUpdateContext = createContext();
@@ -12,7 +14,7 @@ export function retrieveData() {
 }
 
 export default function EditorProvider({ children }) {
-  const [albumImages, setAlbumImages] = useState("");
+  const [albumImages, setAlbumImages] = useState([]);
   const [token, setToken] = useState(null);
 
   const _getToken = async () => {
@@ -39,7 +41,7 @@ export default function EditorProvider({ children }) {
     setToken(data.access_token);
   };
 
-  const searchAlbum = async (artist,searchLimit = 10) => {
+  const searchAlbum = async (artist,searchLimit = 16) => {
     const searchUrl = "https://api.spotify.com/v1/search";
     const query = `?q=${artist}&type=album&limit=${searchLimit}`;
     const url = searchUrl + query;
@@ -56,13 +58,22 @@ export default function EditorProvider({ children }) {
 
     //Extracts image component from Data
     let dataImages = data.albums.items.map((item) => {
-        return item.images[1].url;
+        return {url: item.images[1].url, id: crypto.randomUUID()};
       });
-      
-    console.log("search Albums")
-    console.log(dataImages);
+
+  
     return dataImages
   };
+
+  const addAlbum = (newEntry) => {
+    if (albumImages.length < 4 && !albumImages.some(album => album.id === newEntry.id)) {
+      setAlbumImages([...albumImages, newEntry]);
+    }
+  }
+
+  const removeAlbum = (existingEntryId) => {
+    setAlbumImages(albumImages.filter(album => album.id !== existingEntryId));
+  }
 
   useEffect(() => {
     _getToken();
@@ -70,7 +81,7 @@ export default function EditorProvider({ children }) {
 
   return (
     <DataRetrieveContext.Provider value={{searchAlbum, albumImages}}>
-      <DataUpdateContext.Provider>
+      <DataUpdateContext.Provider value={{addAlbum, removeAlbum}}>
         {children}
       </DataUpdateContext.Provider>
     </DataRetrieveContext.Provider>

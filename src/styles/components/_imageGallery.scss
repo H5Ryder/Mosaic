@@ -1,0 +1,25 @@
+.image-gallery {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: $gap-m;
+    border-radius: $border-radius;
+    background-color: $-c-gray-3;
+    gap: $gap-m;
+    overflow-y: auto;
+
+   
+
+    img {
+        width:100%;
+        border-radius: $border-radius;
+        border: $border-hidden;
+
+        &:hover {
+            border: $border-hover-accent;
+        }
+
+    }
+
+    
+}
