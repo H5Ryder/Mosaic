@@ -2,7 +2,6 @@ import React from 'react'
 
 export default function PromptBar() {
   return (
-    <div className='prompt-bar'>
-    </div>
+    <textarea className='prompt-bar' placeholder='Enter your prompt here...'></textarea>
   )
 }

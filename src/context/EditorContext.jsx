@@ -17,6 +17,12 @@ export default function EditorProvider({ children }) {
   const [albumImages, setAlbumImages] = useState([]);
   const [token, setToken] = useState(null);
 
+
+const updateSliderValues = (newSliderValues) => {
+  setAlbumImages(newSliderValues);
+};
+
+
   const _getToken = async () => {
     const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
     const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
@@ -75,13 +81,35 @@ export default function EditorProvider({ children }) {
     setAlbumImages(albumImages.filter(album => album.id !== existingEntryId));
   }
 
+  const render = async () => {
+    const url = "http://localhost:3000/merge-1"; // Adjust the endpoint as needed
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(albumImages), // Convert your data into a JSON string
+    });
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const responseData = await response.json(); // Assuming the server responds with JSON
+    console.log(responseData);
+  }
+
+
   useEffect(() => {
     _getToken();
   },[])
 
+
+
+
   return (
     <DataRetrieveContext.Provider value={{searchAlbum, albumImages}}>
-      <DataUpdateContext.Provider value={{addAlbum, removeAlbum}}>
+      <DataUpdateContext.Provider value={{addAlbum, removeAlbum,render, updateSliderValues}}>
         {children}
       </DataUpdateContext.Provider>
     </DataRetrieveContext.Provider>

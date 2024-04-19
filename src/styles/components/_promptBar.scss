@@ -1,0 +1,17 @@
+.prompt-bar {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  background-color: $-c-gray-2;
+  border: $-c-white;
+  border-radius: $border-radius;
+  resize: none;
+  overflow: auto;
+  color: $-c-white;
+  padding: $gap-s;
+  
+
+  &:focus {
+    outline: none;
+  }
+}

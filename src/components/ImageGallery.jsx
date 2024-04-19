@@ -6,7 +6,9 @@ export default function imageGallery({images, addAlbum}) {
 
     function _imageArray(data) {
         return data.map((img,index) => {
-            return <img id={img.id} key={img.id} src={img.url} onClick={() => addAlbum(img)} ></img>
+         
+          const album = { ...img, weight: 50 };
+            return <img id={img.id} key={img.id} src={img.url} onClick={() => addAlbum(album)} ></img>
         })
     }
 

@@ -15,10 +15,9 @@ export default function Modifier() {
   return (
     <>
       <ButtonBar />
-
       <div className="render-container">
         <RenderRegion albumImages={albumImages} removeAlbum={removeAlbum} />
-        <PromptBar />
+         <PromptBar />
       </div>
       <ControlPanel />
     </>
