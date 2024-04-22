@@ -96,7 +96,7 @@ export default function EditorProvider({ children }) {
 
     setApiLoading(true);
     console.log("Token val", localStorage.getItem("token"))
-    const url = "http://localhost:3000/merge-1"; // Adjust the endpoint as needed
+    const url = import.meta.env.VITE_SERVER_URL_RENDER; // Adjust the endpoint as needed
     const response = await fetch(url, {
       method: "POST",
       headers: {
