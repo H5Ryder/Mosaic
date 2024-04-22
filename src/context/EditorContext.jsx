@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 export const DataRetrieveContext = createContext();
 export const DataUpdateContext = createContext();
@@ -15,13 +14,19 @@ export function retrieveData() {
 
 export default function EditorProvider({ children }) {
   const [albumImages, setAlbumImages] = useState([]);
+  const [prompt, setPrompt] = useState("");
   const [token, setToken] = useState(null);
+  const [viewRender, setViewRender] = useState(false);
+  const [renderImage, setRenderImage] = useState(null);
+  const [renderHistory, setRenderHistory] = useState([]);
+  const [apiLoading, setApiLoading] = useState(false);
+  const toggleImageView = (boolVal) => {
+    setViewRender(boolVal);
+  }
 
-
-const updateSliderValues = (newSliderValues) => {
-  setAlbumImages(newSliderValues);
-};
-
+  const updateSliderValues = (newSliderValues) => {
+    setAlbumImages(newSliderValues);
+  };
 
   const _getToken = async () => {
     const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
@@ -47,7 +52,7 @@ const updateSliderValues = (newSliderValues) => {
     setToken(data.access_token);
   };
 
-  const searchAlbum = async (artist,searchLimit = 16) => {
+  const searchAlbum = async (artist, searchLimit = 25) => {
     const searchUrl = "https://api.spotify.com/v1/search";
     const query = `?q=${artist}&type=album&limit=${searchLimit}`;
     const url = searchUrl + query;
@@ -64,52 +69,83 @@ const updateSliderValues = (newSliderValues) => {
 
     //Extracts image component from Data
     let dataImages = data.albums.items.map((item) => {
-        return {url: item.images[1].url, id: crypto.randomUUID()};
-      });
+      return { url: item.images[1].url, id: crypto.randomUUID() };
+    });
 
-  
-    return dataImages
+    return dataImages;
   };
 
   const addAlbum = (newEntry) => {
-    if (albumImages.length < 4 && !albumImages.some(album => album.id === newEntry.id)) {
+    if (
+      albumImages.length < 4 &&
+      !albumImages.some((album) => album.id === newEntry.id)
+    ) {
       setAlbumImages([...albumImages, newEntry]);
     }
-  }
+  };
 
   const removeAlbum = (existingEntryId) => {
-    setAlbumImages(albumImages.filter(album => album.id !== existingEntryId));
-  }
+    setAlbumImages(albumImages.filter((album) => album.id !== existingEntryId));
+  };
 
   const render = async () => {
+
+    if (viewRender) {
+    return;
+    }
+
+    setApiLoading(true);
+    console.log("Token val", localStorage.getItem("token"))
     const url = "http://localhost:3000/merge-1"; // Adjust the endpoint as needed
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
       },
-      body: JSON.stringify(albumImages), // Convert your data into a JSON string
+      body: JSON.stringify({images: albumImages, prompt: prompt}), // Convert your data into a JSON string
     });
-  
+
     if (!response.ok) {
+      setApiLoading(false);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
-    const responseData = await response.json(); // Assuming the server responds with JSON
-    console.log(responseData);
+
+    try {
+      const responseData = await response.json(); // Assuming the server responds with JSON
+      console.log("the response data",responseData.imgUrl);
+      setRenderImage(responseData.imgUrl);
+      setRenderHistory([...renderHistory, responseData.imgUrl]);
+      setViewRender(true);
+      setApiLoading(false);
+    } catch (error) {
+      console.error("Failed to fetch or parse response:", error);
+      setApiLoading(false);
+
+    }
+
+  };
+
+  const updatePrompt = (value) => {
+    setPrompt(value);
   }
+
+  const updateRenderImage = (imageUrl) => {
+    setRenderImage(imageUrl)
+    setViewRender(true)
+  }
+
 
 
   useEffect(() => {
     _getToken();
-  },[])
-
-
-
+  }, []);
 
   return (
-    <DataRetrieveContext.Provider value={{searchAlbum, albumImages}}>
-      <DataUpdateContext.Provider value={{addAlbum, removeAlbum,render, updateSliderValues}}>
+    <DataRetrieveContext.Provider value={{ searchAlbum, albumImages, prompt, viewRender, renderImage, apiLoading, renderHistory}}>
+      <DataUpdateContext.Provider
+        value={{ addAlbum, removeAlbum, render, updateSliderValues, updatePrompt, toggleImageView,updateRenderImage }}
+      >
         {children}
       </DataUpdateContext.Provider>
     </DataRetrieveContext.Provider>

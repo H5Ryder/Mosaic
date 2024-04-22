@@ -10,13 +10,14 @@
 
 
     input {
-        width: 100%;
+        flex-grow: 1;
         background-color: $-c-gray-2;
         border-radius: 999px;
         color: $-c-white;
 
         padding: $gap-s $gap-xl;
         border: $border-hidden;
+
 
     }
 

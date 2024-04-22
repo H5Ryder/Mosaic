@@ -1,6 +1,13 @@
 .render-region {
   flex-grow: 1;
 
+  .render-zone {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: $border-radius;
+
+  }
+
   .album-grid {
     width: 100%;
     display: grid;

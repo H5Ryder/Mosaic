@@ -1,0 +1,46 @@
+.login-container {
+    margin-top: 100px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    .save-token {
+        margin-top: 50px;
+        max-width: 300px; /* Prevents the button from exceeding 300px in width */
+        overflow: hidden; /* Hides any text that overflows the button's bounds */
+        white-space: nowrap; /* Prevents the text inside the button from wrapping */
+        text-overflow: ellipsis; /* Adds an ellipsis (...) to signify there's more text that's not visible */
+      }
+
+    .input-container {
+        display: flex;
+        gap: $gap-m;
+        align-items: center;
+        padding: 10px;
+
+        input {
+            padding: 10px;
+        }
+    }
+
+    form {
+
+        display:flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: $gap-xl;
+
+        
+        
+
+    }
+
+    input {
+        border: 1px solid white;
+        color: white;
+    }
+}
+

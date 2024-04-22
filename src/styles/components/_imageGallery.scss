@@ -2,6 +2,7 @@
     flex-grow: 1;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: minmax(min-content, max-content);
     padding: $gap-m;
     border-radius: $border-radius;
     background-color: $-c-gray-3;

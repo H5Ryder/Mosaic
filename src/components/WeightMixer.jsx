@@ -13,8 +13,6 @@ function WeightMixer() {
   };
 
   function createSliders() {
-    console.log("We at Weight Mixer");
-    console.log(albumImages);
     let rangeSliders = albumImages.map((album, index) => {
       const logoPosition =
         index === 0

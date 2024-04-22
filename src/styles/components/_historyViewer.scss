@@ -1,0 +1,30 @@
+
+.render-card {
+    display: flex;
+    align-content: center;
+    margin: 0 $gap-m;
+    padding: $gap-m 0;
+    gap: $gap-m;
+    border-bottom: 1px solid $-c-gray-1;
+
+    .render-image {
+        height: 70px;
+        aspect-ratio: 1/1;
+        border-radius: 6px;
+
+    }
+
+    .render-buttons {
+        flex: 1 1 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $gap-m;
+
+        button {
+
+        }
+    }
+
+    
+}

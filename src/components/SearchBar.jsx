@@ -18,7 +18,7 @@ export default function SearchBar({submitSearch}) {
   
 
     return (
-      <div className="search-bar">
+      <div className="search-bar artist">
         <input
           type="text"
           placeholder="Enter an artist of interest"

@@ -4,6 +4,8 @@
 
 // Layouts & Pages
 @import 'pages/editor';
+@import 'pages/login';
+
 
 
 
@@ -14,4 +16,6 @@
 @import 'components/buttonBar';
 @import 'components/renderRegion';
 @import 'components/promptBar';
-@import 'components/weightMixer'
+@import 'components/weightMixer';
+@import 'components/viewSelector';
+@import 'components/historyViewer';
