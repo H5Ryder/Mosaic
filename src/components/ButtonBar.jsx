@@ -18,7 +18,8 @@ export default function ButtonBar() {
   }
 
   async function checkToken(tokenVal) {
-    let url = import.meta.env.VITE_SERVER_URL_CHECK;
+    const BASE_URL = "https://"
+    let url = `${BASE_URL}${import.meta.env.VITE_SERVER_URL_CHECK}`;
     try {
       console.log("fetching...", url);
       const response = await fetch(url, {

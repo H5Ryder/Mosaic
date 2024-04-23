@@ -9,9 +9,8 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const BASE_URL = "https://"
-    console.log("env varialbe", import.meta.env.VITE_SERVER_URL_LOGIN)
     const url = `${BASE_URL}${import.meta.env.VITE_SERVER_URL_LOGIN}`; // Adjust the endpoint as needed
-console.log("The login url is", url);
+    console.log("The login url is", url);
     const response = await fetch(url, {
       method: "POST",
       headers: {
