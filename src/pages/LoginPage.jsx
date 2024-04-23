@@ -8,8 +8,9 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const url = `${import.meta.env.VITE_SERVER_URL_LOGIN}`; // Adjust the endpoint as needed
+    const BASE_URL = "https://"
+   
+    const url = `${BASE_URL}${import.meta.env.VITE_SERVER_URL_LOGIN}`; // Adjust the endpoint as needed
 console.log("The login url is", url);
     const response = await fetch(url, {
       method: "POST",
