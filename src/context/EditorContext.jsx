@@ -96,7 +96,7 @@ export default function EditorProvider({ children }) {
 
     setApiLoading(true);
     console.log("Token val", localStorage.getItem("token"))
-    const BASE_URL = "https://"
+    const BASE_URL = "http://"
     const url = `${BASE_URL}${import.meta.env.VITE_SERVER_URL_RENDER}`; // Adjust the endpoint as needed
     const response = await fetch(url, {
       method: "POST",
