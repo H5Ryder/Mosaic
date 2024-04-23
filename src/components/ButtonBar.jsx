@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate at the top
+
 
 export default function ButtonBar() {
   const [token, setToken] = useState("");
   const [verified, setVerified] = useState(false);
+
+  const navigate = useNavigate(); // Initialize useNavigate
+
 
   function storeToken(tokenVal) {
     localStorage.setItem("token", tokenVal);
@@ -65,7 +70,7 @@ export default function ButtonBar() {
 
       
 
-      <h2>Mosaic</h2>
+      <h2 onClick={() => navigate('/login')}>Mosaic</h2>
     </div>
   );
 }
