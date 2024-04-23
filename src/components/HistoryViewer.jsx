@@ -25,9 +25,9 @@ function HistoryViewer() {
 
 
   function displayPrevRenders(arrayOfImages) {
-    return arrayOfImages.map((image,index) => (
+    return arrayOfImages.map((image) => (
       <>
-      <div key={index} className="render-card"> 
+      <div key={image} className="render-card"> 
         <img className="render-image" src={image} alt={""} /> 
         <div className="render-buttons">
           <button onClick={() => downloadRender(image)}>Save</button>
