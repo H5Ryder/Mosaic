@@ -9,7 +9,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:3000/login"; // Adjust the endpoint as needed
+    const url = import.meta.env.VITE_SERVER_URL_lOGIN; // Adjust the endpoint as needed
 
     const response = await fetch(url, {
       method: "POST",
