@@ -10,7 +10,7 @@ function LoginPage() {
     e.preventDefault();
 
     const url = import.meta.env.VITE_SERVER_URL_lOGIN; // Adjust the endpoint as needed
-
+console.log("The login url is", url);
     const response = await fetch(url, {
       method: "POST",
       headers: {
