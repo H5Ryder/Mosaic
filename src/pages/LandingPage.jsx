@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import strokes from "../assets/strokes.jpg";
 
 function LandingPage() {
   const navigate = useNavigate();
