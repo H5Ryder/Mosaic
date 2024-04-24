@@ -1,0 +1,179 @@
+.landing-page {
+  padding: 60px;
+  margin: $gap-m;
+  height: 100vh;
+  position: relative;
+
+  display: flex;
+  gap: $gap-m;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    color: $-c-gray-1;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  p {
+    color: $-c-gray-1;
+    text-align: center;
+  }
+
+  .title {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    font-family: $title-font;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: $-c-white;
+  }
+
+  .go-to-editor {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    font-family: $title-font;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: $-c-white;
+
+    &:hover {
+        border-bottom: 1px solid white;
+    }
+  }
+
+  
+
+  .how-to-use {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform-origin: 0% 100%;
+    transform: rotate(-90deg);
+    font-family: $title-font;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: $-c-white;
+
+
+    &:hover {
+        border-top: 1px solid white;
+    }
+  }
+
+  
+
+  .container {
+    position: relative;
+    width: 80%;
+    aspect-ratio: 1/1;
+
+    @media (min-aspect-ratio: 1.2/1) {
+      width: 40%;
+    }
+
+    .img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+    }
+
+    .background-img {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: $gap-m;
+
+      .square-input-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-size: cover; // Ensures the image covers the container
+        background-position: center; // Centers the image within the container
+      }
+      /*  background-image: url("../assets/input-example.png");*/
+    }
+
+    .foreground-img {
+      background-image: url("../assets/output-example.png");
+      width: 50%;
+    }
+  }
+
+  @mixin center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slider {
+    position: absolute;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(#f2f2f2, 0.3);
+    outline: none;
+    margin: 0;
+    transition: all 0.2s;
+    @include center;
+    &:hover {
+      background: rgba(#f2f2f2, 0.0);
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: calc(var(--before-left) - 5px);
+      width: 6px; // Match the thumb width
+      height: 100%; // Full height of the slider
+      background: $-c-white; // Match the thumb color
+      pointer-events: none; // Ignore pointer events
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 6px;
+      height: 20px;
+      background: white;
+      cursor: pointer;
+    }
+  }
+
+  .slider-button {
+    $size: 30px;
+    pointer-events: none;
+    position: absolute;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: $-c-white;
+    left: calc(50% - 18px);
+    top: calc(50% - 18px);
+    @include center;
+
+    @mixin arrow-helper() {
+      content: "";
+      padding: 3px;
+      display: inline-block;
+      border: solid $-c-gray-3;
+      border-width: 0 2px 2px 0;
+    }
+    &:after {
+      @include arrow-helper();
+      transform: rotate(-45deg);
+    }
+    &:before {
+      @include arrow-helper();
+      transform: rotate(135deg);
+    }
+  }
+}

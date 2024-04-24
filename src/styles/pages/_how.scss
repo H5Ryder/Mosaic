@@ -1,0 +1,58 @@
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+.how-to-container {
+  padding: 10px;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  width: 90vw;
+  align-items: center;
+  gap: $gap-l;
+
+  @media (max-width: 600px) {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;  // Adjust as needed for your design
+  }
+
+  ol li {
+    padding-bottom: 8px;
+  }
+
+  a {
+    color: $-c-accent;
+  }
+
+  .instructions {
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $gap-l;
+
+    .list {
+        padding-left: $gap-l;
+    }
+
+
+    .go-to-editor {
+
+        &:hover {
+            border-bottom: 1px solid white;
+        }
+    }
+  }
+
+  .how-to-gif {
+    width: auto;  /* or a specific width, e.g., 100% */
+    height: auto; /* maintains the aspect ratio */
+    max-width: 100%; 
+  }
+}
