@@ -54,11 +54,13 @@ export default function ButtonBar() {
 
       return () => clearTimeout(delayDebounceFn);
     }
+
+
   }, [token]);
 
   return (
     <div className="button-bar">
-      <div className={`search-bar ${verified ? `verified` : ""}`}>
+      <div className={`search-bar ${(token === "" ? "" : (verified ? `verified` : "unverified"))}`}>
         <input
           type="text"
           placeholder="Enter Token Harris gave you..."

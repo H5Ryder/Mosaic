@@ -94,17 +94,21 @@ export default function EditorProvider({ children }) {
     return;
     }
 
+    if ( localStorage.getItem("token").length < 10) {
+      return;
+    }
+
     setApiLoading(true);
     console.log("Token val", localStorage.getItem("token"))
     const BASE_URL = "https://"
-    const url = `${BASE_URL}${import.meta.env.VITE_SERVER_URL_RENDER}`; // Adjust the endpoint as needed
+    const url = `${BASE_URL}${import.meta.env.VITE_SERVER_URL_RENDER}`; 
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`
       },
-      body: JSON.stringify({images: albumImages, prompt: prompt}), // Convert your data into a JSON string
+      body: JSON.stringify({images: albumImages, prompt: prompt}), 
     });
 
     if (!response.ok) {
@@ -113,7 +117,7 @@ export default function EditorProvider({ children }) {
     }
 
     try {
-      const responseData = await response.json(); // Assuming the server responds with JSON
+      const responseData = await response.json(); 
       console.log("the response data",responseData.imgUrl);
       setRenderImage(responseData.imgUrl);
       setRenderHistory([...renderHistory, responseData.imgUrl]);

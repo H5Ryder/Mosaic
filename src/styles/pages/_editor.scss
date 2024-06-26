@@ -43,7 +43,10 @@ body {
 
       &.verified input {
         border: 2px solid $-c-accent;
+      }
 
+      &.unverified input {
+        border: 2px solid red;
       }
     }
 
